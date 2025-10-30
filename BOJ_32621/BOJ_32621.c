@@ -25,12 +25,12 @@ static bool IsCute(){
 			break;
 		}
 
-		if(input[cur] < '1' || input[cur] > '9') return false;
+		if(input[cur] < '0' || input[cur] > '9') return false;
 		BeforePlus[BeforePlusLength++] = input[cur++];
 	}
 	//saves After Plus Value
 	while(cur < inputlen){
-		if(input[cur] > '1' || input[cur] > '9') return false;
+		if(input[cur] < '0' || input[cur] > '9') return false;
 		AfterPlus[AfterPlusLength++] = input[cur++];
 	}
 	//if lengths are 0...
@@ -38,6 +38,9 @@ static bool IsCute(){
 
 	//if both lengths arn't same...
 	if(BeforePlusLength != AfterPlusLength) return false;
+	
+	//if either Before&plus are like 01...
+	if(BeforePlus[0] == '0' || AfterPlus[0] == '0') return false;
 
 	//check the values
 	for(int i=0; i<BeforePlusLength; i++){
